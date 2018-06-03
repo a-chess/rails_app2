@@ -16,7 +16,7 @@ class TimecardsController < ApplicationController
 
   def index
     @user = User.find_by(id: session[:user_id])
-    @tc_list = Timecard.where(id: session[:user_id])
+    @tc_list = Timecard.where(user_id: session[:user_id])
   end
   
   def update

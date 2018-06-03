@@ -10,7 +10,7 @@ TimecardIndece.create!(target_month: "201804")
 
 # 管理者ユーザー登録
 User.create!(name:  "緒方　孝市",
-             email: "ogata@gmail.com",
+             email: "ogata@test.com",
              password:              "password",
              password_confirmation: "password",
              admin: true)

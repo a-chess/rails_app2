@@ -1,0 +1,22 @@
+<% tc = Timecard.find_by(user_id: u.id,target_month: @target) %>
+<tr>
+	<td>
+		<%= u.name %>
+	</td>
+	<td style="text-align: center">
+		<% if !tc.nil? %>
+			<%= Generic.find_by(kbn: "K01", key1: tc.shinsei_kbn).data1 %>
+		<% else %>
+			未作成
+		<% end %>
+	</td>
+	<td>
+		<% if !tc.nil? %>
+			<%= link_to "確認", "#{timecards_path}/#{tc.id}"  %>
+		<% end %>
+		<% if !tc.nil? && tc.shinsei_kbn == 1 %>
+			<%= link_to "承認", approval_path(id: tc.id),method: :patch,data: {confirm: "承認して宜しいですか？"} %>
+		<% end %>
+	</td>
+</tr>
+

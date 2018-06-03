@@ -1,0 +1,16 @@
+<% provide(:title, "TCマスタメンテ") %>
+
+<h4>TCインデックス</h4>
+<% @tc_month_list.each do |t| %>
+	<p style="margin-left: 30px">
+		<%= t.target_month%>&nbsp;&nbsp;
+		<%= link_to "作成",
+			"#{tcmente_path}/#{t.target_month}", 
+			method: :post, data: {confirm: "全職員分のタイムカードを作成します。（#{t.target_month}）"} %>
+	</p>
+<% end %>
+
+<p style="margin-left: 40px">
+<%= link_to "戻る",home_path %>
+<%= link_to "追加",tcmente_path, method: :post, data: {confirm: "TCインデックスを追加します。"} %>
+</p>

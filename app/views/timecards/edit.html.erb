@@ -1,0 +1,42 @@
+<% provide(:title, 'タイムカード') %>
+
+<%= form_for(@tc,url: timecards_path) do |tc| %>
+	<%= tc.hidden_field :id, value: tc.object.id %>
+	<table border=1 width="80%" align="center">
+		<tr height=40>
+			<td width="10%">対象年月</td>
+			<td width="10%">
+				<%= tc.label :target_month, value: tc.object.target_month %>
+			</td>
+			<td width="10%">
+				<%= tc.label :shinsei_kbn, value: Generic.find_by(kbn:"K01", key1: tc.object.shinsei_kbn).data1 %>
+			</td>
+			<td width="10%">氏名</td>
+			<td>
+				<%= User.find_by(id: tc.object.user_id).name %>
+			</td>
+		</tr>
+	</table>
+	
+	
+	<br />
+	<table border=1 width="80%" align="center">
+		<tr bgcolor="gray" height="30" style="text-align: center">
+			<td width="7%">日付</td>
+			<td width="8%">勤務状況</td>
+			<td width="15%">出勤</td>
+			<td width="15%">退勤</td>
+			<td width="7%">休憩</td>
+			<td>備考</td>
+		</tr>
+		
+		<%= tc.fields_for :timecard_detail do |detail| %>
+			<%= render 'tc_details_fields', f: detail %>
+		<% end %>
+	</table>
+	<% if !@disabled %>
+		<%= tc.submit "更新",name: "btn_update" , class: "btn btn-primary"%>
+		<%= tc.submit "申請" ,name: "btn_shinsei", class: "btn btn-primary"%>
+	<% end %>
+<% end %>
+

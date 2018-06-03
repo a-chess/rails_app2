@@ -1,0 +1,2 @@
+class TimecardIndece < ApplicationRecord
+end

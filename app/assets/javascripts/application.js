@@ -11,6 +11,17 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
+//= require bootstrap
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require bootstrap-sprockets
+
+//Enter押下時に自動的にSubmitされるのを防ぐ。
+//※明示的に「allow_submit」クラスを指定した場合はSubmitを実施
+$(function() {
+  $(document).on("keypress", "input:not(.allow_submit)", function(event) {
+    return event.which !== 13;
+  });
+});

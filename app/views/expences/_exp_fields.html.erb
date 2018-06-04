@@ -1,0 +1,21 @@
+<tr>
+
+<td align="center">
+<%= f.select :date ,@days, {}, {disabled: @is_show}  %>
+</td>
+<td>
+<%= f.collection_select :expence_kbn, @expKbn, :key1, :data1,  {}, {disabled: @is_show} %>
+</td>
+<td>
+<%= f.text_field :cost, disabled: @is_show %>
+</td>
+<td>
+<%= f.text_field :memo, disabled: @is_show, style: "width:100%;" %>
+</td>
+<td>
+<% if !@is_show%>
+<%= link_to "削除", expence_path(id: f.object.id), method: :delete ,data: {confirm: "項目を削除します。"} %>
+<% end %>
+</td>
+</tr>
+

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'expences/edit'
   get 'approval/index'
   get 'approvals/index'
   get '/signup', to: 'users#new'
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   get 'approval', to: 'approval#index'
   get 'approval/(:target)', to: 'approval#index'
   patch 'approval(:id)', to: 'approval#update'
+  
+  resources :expences
   
   get 'static_pages/about',as: 'about'
   get 'static_pages/help',as: 'help'

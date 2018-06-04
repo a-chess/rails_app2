@@ -3,6 +3,8 @@
 	<td>
 		<%= u.name %>
 	</td>
+	
+	<!-- -----Timecard------- -->
 	<td style="text-align: center">
 		<% if !tc.nil? %>
 			<%= Generic.find_by(kbn: "K01", key1: tc.shinsei_kbn).data1 %>
@@ -15,7 +17,24 @@
 			<%= link_to "確認", "#{timecards_path}/#{tc.id}"  %>
 		<% end %>
 		<% if !tc.nil? && tc.shinsei_kbn == 1 %>
-			<%= link_to "承認", approval_path(id: tc.id),method: :patch,data: {confirm: "承認して宜しいですか？"} %>
+			<%= link_to "承認", approval_path(id: tc.id, type: "exp"),method: :patch,data: {confirm: "承認して宜しいですか？"} %>
+		<% end %>
+	</td>
+	
+	<!-- -----expences------- -->
+	<td style="text-align: center">
+		<% if !tc.nil? %>
+			<%= Generic.find_by(kbn: "K01", key1: tc.keihi_shinsei_kbn).data1 %>
+		<% else %>
+			未作成
+		<% end %>
+	</td>
+	<td>
+		<% if !tc.nil? %>
+			<%= link_to "確認", expence_path(id: tc.id)  %>
+		<% end %>
+		<% if !tc.nil? && tc.keihi_shinsei_kbn == 1 %>
+			<%= link_to "承認", approval_path(id:tc.id,type:"exp"),method: :patch,data: {confirm: "承認して宜しいですか？"} %>
 		<% end %>
 	</td>
 </tr>

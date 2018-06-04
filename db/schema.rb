@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_02_183338) do
+ActiveRecord::Schema.define(version: 2018_06_04_142727) do
+
+  create_table "expences", force: :cascade do |t|
+    t.integer "timecard_id"
+    t.integer "expence_kbn", default: 0, null: false
+    t.date "date", null: false
+    t.string "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "cost", default: 0, null: false
+    t.index ["timecard_id"], name: "index_expences_on_timecard_id"
+  end
 
   create_table "generics", force: :cascade do |t|
     t.string "kbn", null: false
@@ -46,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_06_02_183338) do
     t.integer "shinsei_kbn", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "keihi_shinsei_kbn", default: 0, null: false
     t.index ["user_id", "target_month"], name: "index_timecards_on_user_id_and_target_month", unique: true
     t.index ["user_id"], name: "index_timecards_on_user_id"
   end

@@ -11,9 +11,15 @@
 <br />
 <table border=1 width="80%" align="center">
 <tr bgcolor="gray" >
-	<th width="50%" style="text-align: center">名前</th>
-	<th width="20%" style="text-align: center">状況</th>
-	<th width="30%" style="text-align: center">アクション</th>
+	<th width="30%" rowspan=2 style="text-align: center">名前</th>
+	<th width="35%" colspan=2 style="text-align: center">TC</th>
+	<th width="35%" colspan=2 style="text-align: center">経費</th>
+</tr>
+<tr bgcolor="gray" >
+	<th style="text-align: center">状況</th>
+	<th style="text-align: center">アクション</th>
+	<th style="text-align: center">状況</th>
+	<th style="text-align: center">アクション</th>
 </tr>
 <% @users.each do |u| %>
 	<%= render 'approval_sub', u: u %>

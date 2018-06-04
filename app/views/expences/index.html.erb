@@ -1,0 +1,20 @@
+<% provide(:title, '経費') %>
+
+
+<table border=1 width="20%">
+<tr bgcolor="gray">
+	<th>対象年月</th>
+	<th>ステータス</th>
+</tr>
+
+<% @tc_list.each do |tc|%>
+	<tr>
+		<td>
+			<%= link_to tc.target_month, edit_expence_path(tc) %>
+		</td>
+		<td>
+			<%= Generic.find_by(kbn:"K01", key1: tc.keihi_shinsei_kbn).data1 %>
+		</td>
+	</tr>
+<% end %>
+</table>

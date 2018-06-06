@@ -15,6 +15,7 @@ class TimecardsController < ApplicationController
   end
 
   def index
+    @count = 0
     @user = User.find_by(id: session[:user_id])
     @tc_list = Timecard.where(user_id: session[:user_id])
   end

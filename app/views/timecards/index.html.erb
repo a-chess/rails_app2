@@ -1,20 +1,27 @@
 <% provide(:title, 'タイムカード') %>
+<br />
 
-
-<table border=1 width="20%">
-<tr bgcolor="gray">
-	<th>対象年月</th>
-	<th>ステータス</th>
-</tr>
-
-<% @tc_list.each do |tc|%>
-	<tr>
-		<td>
-			<%= link_to tc.target_month, "#{timecards_path}/#{tc.id}/edit" %>
-		</td>
-		<td>
-			<%= Generic.find_by(kbn:"K01", key1: tc.shinsei_kbn).data1 %>
-		</td>
-	</tr>
-<% end %>
+<table class="table table-striped">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">対象年月</th>
+			<th scope="col">ステータス</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% count=0 %>
+		<% @tc_list.each do |tc|%>
+			<% count+=1 %>
+			<tr>
+				<th><%= count %></th>
+				<td>
+					<%= link_to tc.target_month, "#{timecards_path}/#{tc.id}/edit" %>
+				</td>
+				<td>
+					<%= Generic.find_by(kbn:"K01", key1: tc.shinsei_kbn).data1 %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
 </table>

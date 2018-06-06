@@ -12,8 +12,6 @@
  *
  *= require_tree .
  *= require_self
+ *= require material_icons
  */
-
-// Boot strap
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import "material";

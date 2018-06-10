@@ -1,40 +1,69 @@
 <% provide(:title, '経費') %>
-
+<br />
 <%= form_for(@tc,url: expence_path) do |tc| %>
 	<%= tc.hidden_field :id, value: tc.object.id %>
-	<table border=1 width="80%" align="center">
-		<tr height=40>
-			<td width="10%">対象年月</td>
-			<td width="10%">
-				<%= tc.label :target_month, value: tc.object.target_month %>
-			</td>
-			<td width="10%">
-				<%= tc.label :shinsei_kbn, value: Generic.find_by(kbn:"K01", key1: tc.object.keihi_shinsei_kbn).data1 %>
-			</td>
-			<td width="10%">氏名</td>
-			<td>
-				<%= @user.name %>
-			</td>
-		</tr>
-	</table>
+	
+		<div class="container" style="width:80%">
+			<table class="table table-sm table-bordered">
+				<thead>
+					<tr>
+						<th class="th-dark">対象年月</th>
+						<td>
+							<%= tc.label :target_month, value: tc.object.target_month %>
+						</td>
+						<td >
+							<%= tc.label :shinsei_kbn, value: Generic.find_by(kbn:"K01", key1: tc.object.keihi_shinsei_kbn).data1 %>
+						</td>
+						<th class="th-dark">氏名</th>
+						<td>
+							<%= @user.name %>
+						</td>
+					</tr>
+				</thead>
+			</table>
+		</div>
 	
 	<br />
-	<table border=1 width="80%" align="center">
-		<tr bgcolor="gray" height="30" style="text-align: center">
-			<td width="7%">日付</td>
-			<td width="8%">経費種類</td>
-			<td width="15%">金額</td>
-			<td>備考</td>
-			<td>アクション</td>
-		</tr>
+	<div class="container" style="width:80%">
+		<table class="my_table">
+			<thead>
+				<tr>
+					<th width="15%">日付</th>
+					<th width="10%">経費種類</th>
+					<th width="20%">金額</th>
+					<th width="40%">備考</th>
+					<th>アクション</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%= tc.fields_for :expences do |exp| %>
+					<%= render 'exp_fields', f: exp %>
+				<% end %>
+			</tbody>
+		</table>
 		
-		<%= tc.fields_for :expences do |exp| %>
-			<%= render 'exp_fields', f: exp %>
+		<% if !@is_show %>	
+			<div class="row">
+				<div class="col-md-2 offset-md-4">
+					<%= link_to "戻る",:back , class: "btn btn-primary"%>
+				</div>
+				<div class="col-md-2">
+					<%= link_to "追加",expences_path(id: tc.object.id), method: :post, data: {confirm: "項目を追加します。"} , class: "btn btn-primary"%>
+				</div>
+				<div class="col-md-2">
+					<%= tc.submit "更新" ,name: "btn_update", class: "btn btn-primary"%>
+				</div>
+				<div class="col-md-2">
+					<%= tc.submit "申請" ,name: "btn_shinsei", class: "btn btn-primary"%>
+				</div>
+			</div>
+		<% else %>
+			<div class="row">
+				<div class="col-md-2 offset-md-10">
+					<%= link_to "戻る",:back , class: "btn btn-primary"%>
+				</div>
+			</div>
 		<% end %>
-	</table>
-	<% if !@is_show %>
-		<%= link_to "追加",expences_path(id: tc.object.id), method: :post, data: {confirm: "項目を追加します。"} , class: "btn btn-primary"%>
-		<%= tc.submit "更新" ,name: "btn_update", class: "btn btn-primary"%>
-		<%= tc.submit "申請" ,name: "btn_shinsei", class: "btn btn-primary"%>
-	<% end %>
+	
+	</div>
 <% end %>

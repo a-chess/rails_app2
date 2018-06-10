@@ -1,27 +1,38 @@
 <% provide(:title, '承認画面') %>
-
-<table width="80%" align="center">
-	<tr>
-		<td>
-			<%= select :approval, :tcindex, 
-				options_for_select(@tc_index.pluck(:target_month),selected: @target),{}, onchange: "test('#{approval_path}')" %>
-		</td>
-	</tr>
-</table>
 <br />
-<table border=1 width="80%" align="center">
-<tr bgcolor="gray" >
-	<th width="30%" rowspan=2 style="text-align: center">名前</th>
-	<th width="35%" colspan=2 style="text-align: center">TC</th>
-	<th width="35%" colspan=2 style="text-align: center">経費</th>
-</tr>
-<tr bgcolor="gray" >
-	<th style="text-align: center">状況</th>
-	<th style="text-align: center">アクション</th>
-	<th style="text-align: center">状況</th>
-	<th style="text-align: center">アクション</th>
-</tr>
-<% @users.each do |u| %>
-	<%= render 'approval_sub', u: u %>
-<% end %>
-</table>
+<div class="container" width="80%">
+	<h3>TC1・経費承認</h3>	
+	対象年月：
+	<%= select :approval, :tcindex, 
+				options_for_select(@tc_index.pluck(:target_month),selected: @target),{}, onchange: "test('#{approval_path}')" %>
+</div>
+<br />
+
+<div class="container">
+	<table class="my_table">
+		<thead>
+			<tr>
+				<th width="30%" rowspan=2>名前</th>
+				<th width="35%" colspan=2>TC</th>
+				<th width="35%" colspan=2>経費</th>
+			</tr>
+			<tr>
+				<th>状況</th>
+				<th>アクション</th>
+				<th>状況</th>
+				<th>アクション</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @users.each do |u| %>
+				<%= render 'approval_sub', u: u %>
+			<% end %>
+		</tbody>
+	</table>
+	
+	<div class="row">
+		<div class="col-md-2 offset-md-10">
+			<%= link_to "戻る", home_path, class:"btn btn-primary" %>
+		</div>
+	</div>
+</div>

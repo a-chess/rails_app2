@@ -1,21 +1,21 @@
 <tr bgcolor=<%= get_wday_color(f.object.target_date.wday) %>>
-<td align="center">
-<%= f.label :target_date ,value: cnv_date_fmt(f.object.target_date)  %>
-</td>
-<td>
-<%= f.collection_select :kinmu_jokyo, @jokyoKbn, :key1, :data1,  {}, {disabled: @disabled} %>
-</td>
-<td>
-<%= f.time_select :start_time,minute_step: 10, disabled: @disabled %>
-</td>
-<td>
-<%= f.time_select :end_time, minute_step: 10  ,disabled: @disabled %>
-</td>
-<td>
-<%= f.number_field :break_time, min: 0, max: 999 , disabled: @disabled, style: "text-align:center;background-color:#{get_wday_color(f.object.target_date.wday)}"%>
-</td>
-<td>
-<%= f.text_field :memo, disabled: @disabled, style: "width:100%;background-color:#{get_wday_color(f.object.target_date.wday)};" %>
-</td>
+	<td align="center">
+		<%= f.label :target_date ,value: cnv_date_fmt(f.object.target_date)  %>
+	</td>
+	<td>
+		<%= f.collection_select :kinmu_jokyo, @jokyoKbn, :key1, :data1,  {}, {disabled: @disabled} %>
+	</td>
+	<td>
+		<%= f.time_select :start_time,minute_step: 10, disabled: @disabled %>
+	</td>
+	<td>
+		<%= f.time_select :end_time, minute_step: 10  ,disabled: @disabled %>
+	</td>
+	<td>
+		<%= f.number_field :break_time, min: 0, max: 999 , disabled: @disabled, style: "width:100%;text-align:center;background-color:#{get_wday_color(f.object.target_date.wday)}"%>
+	</td>
+	<td>
+		<%= f.text_field :memo, disabled: @disabled, style: "width:100%;background-color:#{get_wday_color(f.object.target_date.wday)};" %>
+	</td>
 </tr>
 

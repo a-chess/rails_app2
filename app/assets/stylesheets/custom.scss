@@ -1,0 +1,51 @@
+//bootstrapのBorderedだとセル間の境界線が表示されないので以下を追加
+
+.my_table{
+  background-color: #ffffff;
+  border: 0;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  width: 100%;
+  
+  th{
+    font-size: 0.8125rem;
+    font-weight: 450;
+    height: 2rem;
+    background-color: #424242;
+    color: white;
+    text-align:center;
+    padding-top: 0.3rem;
+  }
+  td,th{
+    border: 1px solid #e1e1e1;
+    // line-height: 1.428572;
+    // padding-right: 1.75rem;
+    // padding-left: 1.75rem;
+    //vertical-align: top;  
+  }
+  
+  // tbody td,
+  // tbody th {
+    // font-size: 0.8125rem;
+    // font-weight: 400;
+    // height: 3rem;
+    // padding-top: 0.919642625rem;
+    // padding-bottom: 0.919642625rem;
+  // }
+}
+
+
+
+.table-bordered {
+  td {
+    border: 1px solid #e1e1e1;
+  }
+  th {
+    border: 1px solid #e1e1e1;
+  }
+}
+
+.td-dark, .th-dark {
+  background-color: #424242;
+  color: white;
+}
